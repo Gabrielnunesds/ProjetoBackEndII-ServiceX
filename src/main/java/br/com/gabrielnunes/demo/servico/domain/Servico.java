@@ -1,11 +1,15 @@
 package br.com.gabrielnunes.demo.servico.domain;
 
 import br.com.gabrielnunes.demo.categoria.domain.Categoria;
+import br.com.gabrielnunes.demo.ordemservico.domain.OrdemServico;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,4 +30,7 @@ public class Servico {
     @ManyToOne
     @JoinColumn(name = "idCategoria")
     private Categoria categoria;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "servicos")
+    private List<OrdemServico> ordemServico;
 }
